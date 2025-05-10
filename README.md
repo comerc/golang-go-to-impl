@@ -1,6 +1,7 @@
 # Exclude Mocks in Go to Implementation
 
 [![Version](https://img.shields.io/vscode-marketplace/v/zihxs.exclude-mocks-go-to-impl)](https://marketplace.visualstudio.com/items?itemName=zihxs.exclude-mocks-go-to-impl)
+[![Downloads](https://img.shields.io/vscode-marketplace/d/zihxs.exclude-mocks-go-to-impl)](https://marketplace.visualstudio.com/items?itemName=zihxs.exclude-mocks-go-to-impl)
 [![License](https://img.shields.io/github/license/ZihxS/exclude-mocks-go-to-impl)](LICENSE)
 
 **A Visual Studio Code extension to exclude mock files when using "Go to Implementation" in Go projects.**
@@ -15,17 +16,10 @@ This extension improves the default **Go to Implementation** behavior in Visual 
 
 ## Key Features
 
-✅ **Automatic Mock File Filtering**
-Filters files based on customizable glob patterns (e.g., `**/*_mock.go`, `**/mocks/**/*.go`).
-
-✅ **Seamless Integration**
-Replaces the native `Go to Implementation` command `F12` without disrupting normal usage.
-
-✅ **Flexible Configuration**
-Customize mock file patterns via `settings.json`.
-
-✅ **Multi-Result Support**
-Displays a pick list if multiple valid implementations exist.
+- ✅ Filters files based on customizable glob patterns (e.g., `**/*_mock.go`, `**/mocks/**/*.go`).
+- ✅ Replaces the native `Go to Implementation` command `F12` without disrupting normal usage.
+- ✅ Customize mock file patterns via `settings.json`.
+- ✅ Displays a pick list if multiple valid implementations exist.
 
 ---
 
