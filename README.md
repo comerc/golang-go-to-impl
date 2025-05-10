@@ -74,6 +74,7 @@ Customize mock file patterns in `settings.json`:
 {
   "excludeMockFiles.patterns": [
     "**/*_mock.go",     // Files ending with _mock.go
+    "**/mock/**/*.go",  // Files in mock directories
     "**/mocks/**/*.go", // Files in mocks directories
     "**/mock_*.go"      // Files starting with mock_ followed by any characters
   ]

@@ -25,6 +25,7 @@ export function activate(context: vscode.ExtensionContext) {
         const config = vscode.workspace.getConfiguration('excludeMockFiles');
         const patterns: string[] = config.get('patterns', [
             "**/*_mock.go",
+            "**/mock/**/*.go",
             "**/mocks/**/*.go",
             "**/mock_*.go"
         ]);

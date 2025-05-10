@@ -3,7 +3,7 @@
   "displayName": "Exclude Mocks in Go to Implementation",
   "icon": "media/icon.png",
   "description": "Excludes mock files when using Go to Implementation in VS Code for Go projects.",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "publisher": "ZihxS",
   "engines": {
     "vscode": "^1.60.0"
@@ -43,11 +43,9 @@
           },
           "default": [
             "**/*_mock.go",
+            "**/mock/**/*.go",
             "**/mocks/**/*.go",
-            "**/testdata/**/*.go",
-            "**/test/**",
-            "**/mock_*.go",
-            "**/stubs/**/*.go"
+            "**/mock_*.go"
           ],
           "description": "List of glob patterns to identify mock files to exclude."
         }
