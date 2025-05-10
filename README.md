@@ -76,7 +76,7 @@ Displays a pick list if multiple valid implementations exist.
 
 Customize mock file patterns in `settings.json`:
 
-```json
+```txt
 {
   "excludeMockFiles.patterns": [
     "**/*_mock.go",     // Files ending with _mock.go
@@ -87,7 +87,7 @@ Customize mock file patterns in `settings.json`:
 ```
 
 ### Example Custom Patterns:
-```json
+```txt
 {
   "excludeMockFiles.patterns": [
     "**/test/**",       // Files in test directories
