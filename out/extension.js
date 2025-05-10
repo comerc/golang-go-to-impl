@@ -46,6 +46,7 @@ function activate(context) {
         const config = vscode.workspace.getConfiguration('excludeMockFiles');
         const patterns = config.get('patterns', [
             "**/*_mock.go",
+            "**/mock/**/*.go",
             "**/mocks/**/*.go",
             "**/mock_*.go"
         ]);
