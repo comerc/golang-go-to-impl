@@ -28,6 +28,5 @@ jobs:
       env:
         VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
       run: |
-        npm install -g @vscode/vsce
         echo "Publishing to VS Code Marketplace..."
-        vsce publish -p $VSCE_TOKEN 
+        npx @vscode/vsce publish -p $VSCE_TOKEN 

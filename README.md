@@ -38,15 +38,11 @@ $ npm run compile
 5. Run the extension in debug mode (for development):
   - Open the folder in VS Code.
   - Press `F5` to launch the extension host.
-6. Install the extension packaging tool:
+6. Create a VSIX package:
 ```bash
-$ npm install -g @vscode/vsce
+$ npm run package
 ```
-7. Create a VSIX package:
-```bash
-$ vsce package
-```
-8. Install the extension via Command Palette: 
+7. Install the extension via Command Palette: 
 "Extensions: Install from VSIX..."
 
 ## Usage

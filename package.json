@@ -73,9 +73,9 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test:watch": "npm run compile && npm run test",
-    "package": "vsce package",
-    "publish:vscode": "vsce publish",
-    "publish:openvsx": "ovsx publish"
+    "package": "npx @vscode/vsce package",
+    "publish:vscode": "npx @vscode/vsce publish",
+    "publish:openvsx": "npx ovsx publish"
   },
   "dependencies": {
     "minimatch": "^3.1.2"

@@ -28,6 +28,5 @@ jobs:
       env:
         OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
       run: |
-        npm install -g ovsx
         echo "Publishing to OpenVSX Registry..."
-        ovsx publish -p $OVSX_TOKEN 
+        npx ovsx publish -p $OVSX_TOKEN 
