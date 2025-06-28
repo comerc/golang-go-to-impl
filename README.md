@@ -15,7 +15,7 @@ This extension improves the default **Go to Implementation** behavior in Visual 
 - ✅ Filters files based on customizable glob patterns (e.g., `**/*_mock.go`, `**/mocks/**/*.go`).
 - ✅ Customize mock file patterns via `settings.json`.
 - ✅ Displays a pick list if multiple valid implementations exist.
-- ✅ Provides an enhanced **Go to Implementation** command (`ctrl+alt+f12` or `cmd+alt+f12` for mac) while keeping the native command unchanged..
+- ✅ Provides an enhanced **Go to Implementation** with `ctrl+alt+f12` (`cmd+opt+f12` on Mac) while keeping the native command unchanged.
 
 ## Manual Installation
 
@@ -53,11 +53,12 @@ $ vsce package
 
 1. Open a `.go` file in Visual Studio Code.
 2. Click on an **interface method** or **function signature**.
-3. Press (`ctrl+f12` or `cmd+f12` for mac) to trigger **Go to Implementation**.
+3. Press `ctrl+alt+f12` (`cmd+opt+f12` on Mac) to trigger **Go to Implementation**.
 4. The extension will:
    - Fetch implementation locations from the language server (e.g., `gopls`).
    - Filter out mock files based on configured patterns.
    - Navigate to the result or show a pick list.
+5. Easy navigation back with `alt+f12` (`opt+f12` on Mac) to return to the previous location.
 
 ## Configuration
 
