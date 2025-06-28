@@ -37,7 +37,7 @@ can cause loading failures and "command not found" errors. Our custom implementa
 ### Added
 - Initial release of Go to Implementation (Golang) extension
 - Filter mock files using configurable glob patterns
-- Enhanced "Go to Implementation" command with `Ctrl+Alt+F12` / `Cmd+Alt+F12`
+- Enhanced "Go to Implementation" command with `Ctrl+Alt+F12` / `Cmd+Opt+F12`
 - Support for common mock patterns: `**/*_mock.go`, `**/mock/**/*.go`, `**/mocks/**/*.go`, `**/mock_*.go`
 - Real implementation filtering (functions with receivers only)
 - Cross-platform path normalization
