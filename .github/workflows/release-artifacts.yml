@@ -28,13 +28,35 @@ jobs:
     - name: Install dependencies
       run: npm ci
 
-    - name: Run tests
-      uses: coactions/setup-xvfb@v1
-      with:
-        run: npm test
-
-    - name: Run linter
-      run: npm run lint
+    - name: Check latest test status
+      run: |
+        echo "Checking if tests passed on the latest commit..."
+        
+        # Get the latest commit SHA
+        if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+          # For manual dispatch, get the commit from the specified tag
+          COMMIT_SHA=$(git rev-parse ${{ github.event.inputs.tag_name }})
+        else
+          # For release event, get the commit from the tag
+          COMMIT_SHA=$(git rev-parse ${{ github.ref }})
+        fi
+        
+        echo "Checking tests for commit: $COMMIT_SHA"
+        
+        # Use GitHub API to check if tests passed for this commit
+        WORKFLOW_RUNS=$(curl -s -H "Authorization: token ${{ secrets.GITHUB_TOKEN }}" \
+          "https://api.github.com/repos/${{ github.repository }}/actions/workflows/test.yml/runs?head_sha=$COMMIT_SHA&status=completed")
+        
+        # Check if there's a successful test run for this commit
+        SUCCESS_COUNT=$(echo "$WORKFLOW_RUNS" | jq '.workflow_runs | map(select(.conclusion == "success")) | length')
+        
+        if [ "$SUCCESS_COUNT" -gt 0 ]; then
+          echo "✅ Tests passed for commit $COMMIT_SHA"
+        else
+          echo "❌ No successful test runs found for commit $COMMIT_SHA"
+          echo "Please ensure tests pass before creating release artifacts"
+          exit 1
+        fi
 
     - name: Update version in package.json
       run: |
