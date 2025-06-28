@@ -19,6 +19,8 @@ jobs:
     steps:
     - name: Checkout
       uses: actions/checkout@v3
+      with:
+        fetch-depth: 0  # Fetch all history and tags
 
     - name: Install Node.js
       uses: actions/setup-node@v3
@@ -35,10 +37,21 @@ jobs:
         # Get the latest commit SHA
         if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
           # For manual dispatch, get the commit from the specified tag
-          COMMIT_SHA=$(git rev-parse ${{ github.event.inputs.tag_name }})
+          TAG_NAME="${{ github.event.inputs.tag_name }}"
+          echo "Looking for tag: $TAG_NAME"
+          
+          # Check if tag exists
+          if git rev-parse --verify "$TAG_NAME" >/dev/null 2>&1; then
+            COMMIT_SHA=$(git rev-parse "$TAG_NAME")
+          else
+            echo "❌ Tag $TAG_NAME not found"
+            echo "Available tags:"
+            git tag -l | head -10
+            exit 1
+          fi
         else
           # For release event, get the commit from the tag
-          COMMIT_SHA=$(git rev-parse ${{ github.ref }})
+          COMMIT_SHA=$(git rev-parse "${{ github.ref }}")
         fi
         
         echo "Checking tests for commit: $COMMIT_SHA"
