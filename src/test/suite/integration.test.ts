@@ -19,7 +19,10 @@ suite('Integration Tests', () => {
 
     // The extension should handle this gracefully
     assert.ok(testLocation);
-    assert.strictEqual(testLocation.uri.fsPath, '/nonexistent/file.go');
+    // Normalize path for cross-platform compatibility
+    const expectedPath = path.normalize('/nonexistent/file.go');
+    const actualPath = path.normalize(testLocation.uri.fsPath);
+    assert.strictEqual(actualPath, expectedPath);
   });
 
   test('Should normalize Windows paths correctly', () => {
