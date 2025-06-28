@@ -29,4 +29,4 @@ jobs:
         VSCE_TOKEN: ${{ secrets.VSCE_TOKEN }}
       run: |
         echo "Publishing to VS Code Marketplace..."
-        npx @vscode/vsce publish -p $VSCE_TOKEN 
+        npx @vscode/vsce@2.32.0 publish -p $VSCE_TOKEN 

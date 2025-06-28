@@ -103,7 +103,7 @@ jobs:
 
     - name: Package extension
       run: |
-        npx @vscode/vsce package
+        npx @vscode/vsce@2.32.0 package
         echo "Generated VSIX files:"
         ls -la *.vsix
 
