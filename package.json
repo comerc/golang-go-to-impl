@@ -3,7 +3,7 @@
   "displayName": "Go to Implementation (Golang)",
   "icon": "media/icon.png",
   "description": "Excludes mocks, tests, and other specified files.",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "publisher": "comerc",
   "engines": {
     "vscode": "^1.60.0"
@@ -73,15 +73,12 @@
     "pretest": "npm run compile && npm run lint",
     "lint": "eslint src --ext ts",
     "test:watch": "npm run compile && npm run test",
-    "package": "npx @vscode/vsce@2.32.0 package",
-    "publish:vscode": "npx @vscode/vsce@2.32.0 publish",
+    "package": "npx @vscode/vsce@3.6.0 package",
+    "publish:vscode": "npx @vscode/vsce@3.6.0 publish",
     "publish:openvsx": "npx ovsx publish"
   },
-  "dependencies": {
-    "minimatch": "^3.1.2"
-  },
+  "dependencies": {},
   "devDependencies": {
-    "@types/minimatch": "^5.1.2",
     "@types/mocha": "^10.0.1",
     "@types/node": "16.x",
     "@typescript-eslint/eslint-plugin": "^5.59.8",

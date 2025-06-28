@@ -86,7 +86,6 @@ Customize mock file patterns in `settings.json`:
 ## Dependencies
 
 - **[gopls](https://pkg.go.dev/golang.org/x/tools/gopls)**: Go language server supporting **Go to Implementation**.
-- **[minimatch](https://www.npmjs.com/package/minimatch)**: For flexible glob pattern matching.
 
 ## Contributing
 

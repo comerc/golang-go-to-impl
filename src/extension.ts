@@ -1,5 +1,4 @@
 import * as vscode from 'vscode';
-import minimatch from 'minimatch';
 
 export function activate(context: vscode.ExtensionContext) {
     // Golang "Go to Implementation" (filters excludeFiles + only real implementations)
@@ -33,10 +32,10 @@ export function activate(context: vscode.ExtensionContext) {
             "**/mock_*.go"
         ]);
 
-        // Normalize and filter out excluded files
+        // Filter out excluded files using custom glob pattern matching
         const filtered = locations.filter(location => {
-            const normalizedPath = location.uri.fsPath.replace(/\\/g, '/');
-            const isExcluded = excludePatterns.some(pattern => minimatch(normalizedPath, pattern));
+            const relativePath = vscode.workspace.asRelativePath(location.uri.fsPath);
+            const isExcluded = excludePatterns.some(pattern => matchesPattern(relativePath, pattern));
             return !isExcluded;
         });
 
@@ -72,6 +71,30 @@ export function activate(context: vscode.ExtensionContext) {
     });
 
     context.subscriptions.push(disposable);
+}
+
+// Proper glob pattern matcher
+function matchesPattern(relativePath: string, pattern: string): boolean {
+    // Convert glob pattern to regex properly
+    let regexPattern = pattern
+        // Handle glob patterns first - be more specific about ** vs *
+        .replace(/\*\*\/\*/g, '§DOUBLESTAR_SLASH_STAR§')  // **/* pattern
+        .replace(/\*\*/g, '§DOUBLESTAR§')                 // ** pattern
+        .replace(/\*/g, '§STAR§')                         // * pattern
+        .replace(/\?/g, '§QUESTION§')                     // ? pattern
+        // Then escape special regex characters
+        .replace(/[.+^${}()|[\]\\]/g, '\\$&')
+        // Then restore glob patterns as regex
+        .replace(/§DOUBLESTAR_SLASH_STAR§/g, '.*')        // **/* matches any path
+        .replace(/§DOUBLESTAR§/g, '.*')                   // ** matches any directory depth
+        .replace(/§STAR§/g, '[^/]*')                      // * matches anything except /
+        .replace(/§QUESTION§/g, '.');                     // ? matches single character
+
+    const regex = new RegExp('^' + regexPattern + '$');
+    const result = regex.test(relativePath);
+
+    // console.log('[DEBUG] Pattern:', pattern, '→ regex:', regexPattern, 'against:', relativePath, 'result:', result);
+    return result;
 }
 
 async function filterRealImplementations(locations: vscode.Location[]): Promise<vscode.Location[]> {
