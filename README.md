@@ -2,7 +2,7 @@
 
 [![Test](https://github.com/comerc/golang-go-to-impl/actions/workflows/test.yml/badge.svg)](https://github.com/comerc/golang-go-to-impl/actions/workflows/test.yml)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Project status](https://img.shields.io/github/release/comerc/golang-go-to-impl.svg?123)](https://github.com/comerc/golang-go-to-impl/releases/latest)
+[![Project status](https://img.shields.io/github/release/comerc/golang-go-to-impl.svg)](https://github.com/comerc/golang-go-to-impl/releases/latest)
 
 **A Visual Studio Code extension to exclude some files when using "Go to Implementation" in Go projects.**
 

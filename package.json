@@ -2,7 +2,7 @@
   "name": "golang-go-to-impl",
   "displayName": "Go to Implementation (Golang)",
   "icon": "media/icon.png",
-  "description": "Excludes specified files when using Go to Implementation in VS Code for Go projects.",
+  "description": "Excludes mocks, tests, and other specified files.",
   "version": "1.0.0",
   "publisher": "comerc",
   "engines": {
