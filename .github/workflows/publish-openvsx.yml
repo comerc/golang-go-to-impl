@@ -1,0 +1,43 @@
+name: Publish to OpenVSX Registry
+
+on:
+  workflow_run:
+    workflows: ["Create Release Artifacts"]
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+
+jobs:
+  publish-openvsx:
+    runs-on: ubuntu-latest
+    if: ${{ github.event.workflow_run.conclusion == 'success' || github.event_name == 'workflow_dispatch' }}
+    
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Install Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: 16
+
+    - name: Install dependencies
+      run: npm ci
+
+    - name: Run tests
+      uses: coactions/setup-xvfb@v1
+      with:
+        run: npm test
+
+    - name: Run linter
+      run: npm run lint
+
+
+
+    - name: Publish to OpenVSX Registry
+      env:
+        OVSX_TOKEN: ${{ secrets.OVSX_TOKEN }}
+      run: |
+        npm install -g ovsx
+        echo "Publishing to OpenVSX Registry..."
+        ovsx publish -p $OVSX_TOKEN 

@@ -1,58 +1,53 @@
-# Exclude Mocks in Go to Implementation
+# Go to Implementation (Golang)
 
-[![Version](https://img.shields.io/vscode-marketplace/v/zihxs.exclude-mocks-go-to-impl)](https://marketplace.visualstudio.com/items?itemName=zihxs.exclude-mocks-go-to-impl)
-[![Downloads](https://img.shields.io/vscode-marketplace/d/zihxs.exclude-mocks-go-to-impl)](https://marketplace.visualstudio.com/items?itemName=zihxs.exclude-mocks-go-to-impl)
-[![License](https://img.shields.io/github/license/ZihxS/exclude-mocks-go-to-impl)](LICENSE)
+[![Test](https://github.com/comerc/golang-go-to-impl/actions/workflows/test.yml/badge.svg)](https://github.com/comerc/golang-go-to-impl/actions/workflows/test.yml)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Project status](https://img.shields.io/github/release/comerc/golang-go-to-impl.svg?123)](https://github.com/comerc/golang-go-to-impl/releases/latest)
 
-**A Visual Studio Code extension to exclude mock files when using "Go to Implementation" in Go projects.**
-
----
+**A Visual Studio Code extension to exclude some files when using "Go to Implementation" in Go projects.**
 
 ## Description
 
-This extension improves the default **Go to Implementation** behavior in Visual Studio Code for Go projects by **filtering out mock files** (e.g., `*_mock.go`, `mocks/*`) from navigation results. It is ideal for projects using mock generators like [gomock](https://github.com/golang/mock) or custom mock directories.
-
----
+This extension improves the default **Go to Implementation** behavior in Visual Studio Code for Go projects by **filtering out some files** (e.g., `*_mock.go`, `mocks/*`) from navigation results. It is ideal for projects using generators like [uber-go/mock](https://github.com/uber-go/mock) or [vektra/mockery](https://github.com/vektra/mockery) etc. Also useful for ignoring external packages (e.g., with adapters).
 
 ## Key Features
 
 - ✅ Filters files based on customizable glob patterns (e.g., `**/*_mock.go`, `**/mocks/**/*.go`).
 - ✅ Customize mock file patterns via `settings.json`.
 - ✅ Displays a pick list if multiple valid implementations exist.
-- ✅ Replaces the native `Go to Implementation` command (`ctrl+f12` or `cmd+f12` for mac) without disrupting normal usage.
+- ✅ Provides an enhanced **Go to Implementation** command (`ctrl+alt+f12` or `cmd+alt+f12` for mac) while keeping the native command unchanged..
 
----
+## Manual Installation
 
-## Installation
-
-### From Visual Studio Code Marketplace (Recommended)
-1. Open Visual Studio Code.
-2. Open the Extensions Panel (`Ctrl + Shift + X` or `Cmd + Shift + X`).
-3. Search for `Exclude Mocks in Go to Implementation`.
-4. Click **Install**.
-
-### Manual (For Development)
 1. Clone the repository:
-   ```bash
-   git clone https://github.com/ZihxS/exclude-mocks-go-to-impl.git
-   ```
+```bash
+$ git clone https://github.com/comerc/golang-go-to-impl.git
+```
 2. Navigate to the directory:
-   ```bash
-   cd exclude-mocks-go-to-impl
-   ```
+```bash
+$ cd golang-go-to-impl
+```
 3. Install dependencies:
-   ```bash
-   npm install
-   ```
+```bash
+$ npm install
+```
 4. Build the project:
-   ```bash
-   npm run compile
-   ```
-5. Run the extension in debug mode:
-   - Open the folder in VS Code.
-   - Press `F5` to launch the extension host.
-
----
+```bash
+$ npm run compile
+```
+5. Run the extension in debug mode (for development):
+  - Open the folder in VS Code.
+  - Press `F5` to launch the extension host.
+6. Install the extension packaging tool:
+```bash
+$ npm install -g @vscode/vsce
+```
+7. Create a VSIX package:
+```bash
+$ vsce package
+```
+8. Install the extension via Command Palette: 
+"Extensions: Install from VSIX..."
 
 ## Usage
 
@@ -64,19 +59,17 @@ This extension improves the default **Go to Implementation** behavior in Visual 
    - Filter out mock files based on configured patterns.
    - Navigate to the result or show a pick list.
 
----
-
 ## Configuration
 
 Customize mock file patterns in `settings.json`:
 
 ```js
 {
-  "excludeMockFiles.patterns": [
+  "golangGoToImplementation.excludePatterns": [
     "**/*_mock.go",     // Files ending with _mock.go
     "**/mock/**/*.go",  // Files in mock directories
     "**/mocks/**/*.go", // Files in mocks directories
-    "**/mock_*.go"      // Files starting with mock_ followed by any characters
+    "**/mock_*.go",     // Files starting with mock_ followed by any characters
   ]
 }
 ```
@@ -84,7 +77,7 @@ Customize mock file patterns in `settings.json`:
 ### Example Custom Patterns:
 ```js
 {
-  "excludeMockFiles.patterns": [
+  "golangGoToImplementation.excludePatterns": [
     "**/test/**",       // Files in test directories
     "**/testdata/**",   // Files in test directories
     "**/stubs/**/*.go", // Files in stubs directories
@@ -93,14 +86,10 @@ Customize mock file patterns in `settings.json`:
 }
 ```
 
----
-
 ## Dependencies
 
-- **[gopls](https://pkg.go.dev/golang.org/x/tools/gopls)**: Go language server supporting `Go to Implementation`.
+- **[gopls](https://pkg.go.dev/golang.org/x/tools/gopls)**: Go language server supporting **Go to Implementation**.
 - **[minimatch](https://www.npmjs.com/package/minimatch)**: For flexible glob pattern matching.
-
----
 
 ## Contributing
 
@@ -112,37 +101,27 @@ Contributions are welcome! Here's how to get started:
 4. Push to the branch: `git push origin new-feature`.
 5. Submit a Pull Request.
 
----
-
 ## License
 
-MIT © [Muhammad Saleh Solahudin](https://github.com/ZihxS)
-
----
+MIT © [comerc](https://github.com/comerc)
 
 ## Issues or Suggestions?
 
 Report bugs or request features at:
-[https://github.com/ZihxS/exclude-mocks-go-to-impl/issues](https://github.com/ZihxS/exclude-mocks-go-to-impl/issues)
-
----
+[https://github.com/comerc/golang-go-to-impl/issues](https://github.com/comerc/golang-go-to-impl/issues)
 
 ## Keywords
 
 `Go`, `Golang`, `VSCode`, `Mock`, `Go to Implementation`, `gopls`, `Mock Generator`, `Interface Navigation`
-
----
 
 ## Notes
 
 - Works only for Go files (`editorLangId == 'go'`).
 - Does not interfere with built-in commands for other languages.
 
----
+## Example Output
 
-### Example Output
-
-#### Before (Without Extension)
+### Before (Without Extension)
 ```
 interfaces.go:10: func DoSomething()
 → Implementations found:
@@ -151,9 +130,19 @@ interfaces.go:10: func DoSomething()
   - testdata/fake_service.go
 ```
 
-#### After (With Extension)
+### After (With Extension)
 ```
 interfaces.go:10: func DoSomething()
 → Implementations found:
   - service.go
 ```
+
+## Video
+
+### Before (Without Extension)
+
+[![Before](https://img.youtube.com/vi/UBpYWz70xFU/0.jpg)](https://www.youtube.com/watch?v=UBpYWz70xFU&t=0.25)
+
+### After (With Extension)
+
+[![After](https://img.youtube.com/vi/kbm4_u_xArI/0.jpg)](https://www.youtube.com/watch?v=kbm4_u_xArI&t=0.25)

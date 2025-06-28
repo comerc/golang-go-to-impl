@@ -1,42 +1,53 @@
 {
-  "name": "exclude-mocks-go-to-impl",
-  "displayName": "Exclude Mocks in Go to Implementation",
+  "name": "golang-go-to-impl",
+  "displayName": "Go to Implementation (Golang)",
   "icon": "media/icon.png",
-  "description": "Excludes mock files when using Go to Implementation in VS Code for Go projects.",
-  "version": "1.1.0",
-  "publisher": "ZihxS",
+  "description": "Excludes specified files when using Go to Implementation in VS Code for Go projects.",
+  "version": "1.0.0",
+  "publisher": "comerc",
   "engines": {
     "vscode": "^1.60.0"
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/ZihxS/exclude-mocks-go-to-impl.git"
+    "url": "https://github.com/comerc/golang-go-to-impl.git"
   },
   "categories": [
     "Other"
+  ],
+  "keywords": [
+    "go",
+    "golang",
+    "mock",
+    "implementation",
+    "navigation",
+    "gopls",
+    "testing",
+    "interface"
   ],
   "activationEvents": [],
   "main": "./out/extension.js",
   "contributes": {
     "commands": [
       {
-        "command": "excludeMocksGoToImplementation",
-        "title": "Go to Implementation (Exclude Mocks)"
+        "command": "golangGoToImplementation",
+        "title": "Go to Implementation (Golang)",
+        "icon": "$(symbol-method)"
       }
     ],
     "keybindings": [
       {
-        "command": "excludeMocksGoToImplementation",
-        "key": "ctrl+f12",
-        "mac": "cmd+f12",
+        "command": "golangGoToImplementation",
+        "key": "ctrl+alt+f12",
+        "mac": "cmd+alt+f12",
         "when": "editorTextFocus && editorLangId == 'go'"
       }
     ],
     "configuration": {
       "type": "object",
-      "title": "Exclude Mock Files",
+      "title": "Golang Go to Implementation",
       "properties": {
-        "excludeMockFiles.patterns": {
+        "golangGoToImplementation.excludePatterns": {
           "type": "array",
           "items": {
             "type": "string",
@@ -48,7 +59,7 @@
             "**/mocks/**/*.go",
             "**/mock_*.go"
           ],
-          "description": "List of glob patterns to identify mock files to exclude."
+          "description": "List of glob patterns to exclude files from Go to Implementation results."
         }
       }
     }
@@ -57,14 +68,29 @@
     "vscode:prepublish": "npm run compile",
     "compile": "tsc -p ./",
     "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "postinstall": "node ./node_modules/vscode/bin/install",
+    "test": "npm run compile && node ./out/test/runTest.js",
+    "pretest": "npm run compile && npm run lint",
+    "lint": "eslint src --ext ts",
+    "test:watch": "npm run compile && npm run test",
+    "package": "vsce package",
+    "publish:vscode": "vsce publish",
+    "publish:openvsx": "ovsx publish"
   },
   "dependencies": {
     "minimatch": "^3.1.2"
   },
   "devDependencies": {
-    "vscode": "^1.1.37",
     "@types/minimatch": "^5.1.2",
-    "typescript": "^4.4.3"
+    "@types/mocha": "^10.0.1",
+    "@types/node": "16.x",
+    "@typescript-eslint/eslint-plugin": "^5.59.8",
+    "@typescript-eslint/parser": "^5.59.8",
+    "@vscode/test-electron": "^2.3.4",
+    "eslint": "^8.41.0",
+    "glob": "^8.1.0",
+    "mocha": "^10.2.0",
+    "typescript": "^4.4.3",
+    "vscode": "^1.1.37"
   }
 }
