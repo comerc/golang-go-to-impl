@@ -15,9 +15,9 @@ This extension improves the default **Go to Implementation** behavior in Visual 
 - ✅ Filters files based on customizable glob patterns (e.g., `**/*_mock.go`, `**/mocks/**/*.go`).
 - ✅ Customize mock file patterns via `settings.json`.
 - ✅ Displays a pick list if multiple valid implementations exist.
-- ✅ Provides an enhanced **Go to Implementation** with `ctrl+alt+f12` (`cmd+opt+f12` on Mac) while keeping the native command unchanged.
+- ✅ Provides an enhanced **Go to Implementation** with `Ctrl+Alt+F12` (`Cmd+Opt+F12` on Mac) while keeping the native command unchanged.
 
-## Manual Installation
+## Development
 
 1. Clone the repository:
 ```bash
@@ -38,23 +38,23 @@ $ npm run compile
 5. Run the extension in debug mode (for development):
   - Open the folder in VS Code.
   - Press `F5` to launch the extension host.
-6. Create a VSIX package:
-```bash
-$ npm run package
-```
-7. Install the extension via Command Palette: 
-"Extensions: Install from VSIX..."
+
+## Manual Installation
+
+1. Download `golang-go-to-impl-*.vsix` from [latest release](https://github.com/comerc/golang-go-to-impl/releases/latest).
+2. Open Command Palette `Ctrl+Shift+P` (`Cmd+Shift+P` on Mac).
+3. Type ">Extensions: Install from VSIX..." and select the downloaded file.
 
 ## Usage
 
 1. Open a `.go` file in Visual Studio Code.
 2. Click on an **interface method** or **function signature**.
-3. Press `ctrl+alt+f12` (`cmd+opt+f12` on Mac) to trigger **Go to Implementation**.
+3. Press `Ctrl+Alt+F12` (`Cmd+Opt+F12` on Mac) to trigger **Go to Implementation**.
 4. The extension will:
    - Fetch implementation locations from the language server (e.g., `gopls`).
    - Filter out mock files based on configured patterns.
    - Navigate to the result or show a pick list.
-5. Easy navigation back with `alt+f12` (`opt+f12` on Mac) to return to the previous location.
+5. Easy navigation back with `Alt+F12` (`Opt+F12` on Mac) to return to the previous location.
 
 ## Configuration
 
