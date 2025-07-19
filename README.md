@@ -45,6 +45,8 @@ $ npm run compile
 2. Open Command Palette `Ctrl+Shift+P` (`Cmd+Shift+P` on Mac).
 3. Type ">Extensions: Install from VSIX..." and select the downloaded file.
 
+> Also available on [open-vsx.org](https://open-vsx.org/extension/comerc/golang-go-to-impl)
+
 ## Usage
 
 1. Open a `.go` file in Visual Studio Code.
