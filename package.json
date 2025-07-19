@@ -4,6 +4,7 @@
   "icon": "media/icon.png",
   "description": "Excludes mocks, tests, and other specified files.",
   "version": "1.1.0",
+  "license": "MIT",
   "publisher": "comerc",
   "engines": {
     "vscode": "^1.60.0"
